@@ -20,7 +20,6 @@ class SelectorContainer extends React.Component {
   }
 
   handleButtonClick(addedItem) {
-    this.props.onAddedItem(addedItem);
     this.updateTotalBaseExperience(addedItem.name);
     this.setState({ selectedItem: "" });
   }
@@ -33,15 +32,8 @@ class SelectorContainer extends React.Component {
         }
         throw new Error("A network response error has occured");
       })
-      .then((response) => {
-        this.setState({
-          totalBaseExperience:
-            this.state.totalBaseExperience + response.base_experience,
-        });
-        return {
-          name: response.name,
-          base_experience: response.base_experience,
-        };
+      .then((addedItem) => {
+        this.props.onAddedItem(addedItem);
       })
       .catch(() =>
         console.log("An error occurred while fetching the Pokemon data")
@@ -60,7 +52,7 @@ class SelectorContainer extends React.Component {
           selectedItem={this.state.selectedItem}
           onAddItem={this.handleButtonClick}
         ></SelectorButton>
-        Total Base Experience: {this.state.totalBaseExperience}
+        Total Base Experience: {this.props.totalBaseExperience}
       </React.Fragment>
     );
   }

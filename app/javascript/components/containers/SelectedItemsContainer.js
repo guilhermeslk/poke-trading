@@ -11,7 +11,6 @@ class SelectedItemsContainer extends React.Component {
 
   handleAddedItem(item) {
     this.props.onChangeSelectedItems([...this.props.selectedItems, item]);
-
   }
 
   render() {
@@ -20,6 +19,7 @@ class SelectedItemsContainer extends React.Component {
         <SelectorContainer
           items={this.props.items}
           onAddedItem={this.handleAddedItem}
+          totalBaseExperience={this.props.totalBaseExperience}
         ></SelectorContainer>
         <br />
         <SelectedItemsList

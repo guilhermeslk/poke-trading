@@ -1,40 +1,64 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from "react";
+import PropTypes from "prop-types";
 
 import SelectedItemsContainer from "../containers/SelectedItemsContainer";
 
 class TradingContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { selectedItemsA: [], selectedItemsB: []}
 
-    this.handleChangeSelectedItemsA = this.handleChangeSelectedItemsA.bind(this);
-    this.handleChangeSelectedItemsB = this.handleChangeSelectedItemsB.bind(this);
+    this.state = {
+      selectedItemsA: [],
+      selectedItemsB: [],
+      totalBaseExperienceA: 0,
+      totalBaseExperienceB: 0,
+    };
+
+    this.handleChangeSelectedItemsA = this.handleChangeSelectedItemsA.bind(
+      this
+    );
+    this.handleChangeSelectedItemsB = this.handleChangeSelectedItemsB.bind(
+      this
+    );
   }
 
   handleChangeSelectedItemsA(selectedItems) {
-    this.setState({ selectedItemsA: selectedItems})
+    this.setState({
+      selectedItemsA: selectedItems,
+      totalBaseExperienceA: this.calculateTotalExperience(selectedItems),
+    });
   }
-
 
   handleChangeSelectedItemsB(selectedItems) {
-    this.setState({ selectedItemsB: selectedItems})
-
+    this.setState({
+      selectedItemsB: selectedItems,
+      totalBaseExperienceB: this.calculateTotalExperience(selectedItems),
+    });
   }
 
-  render () {
+  calculateTotalExperience(selectedItems) {
+    return selectedItems.reduce((acc, curr) => acc + curr.base_experience, 0);
+  }
+
+  render() {
     return (
       <React.Fragment>
         {this.props.title}
+
         <SelectedItemsContainer
           items={this.props.items}
           selectedItems={this.state.selectedItemsA}
-          onChangeSelectedItems={this.handleChangeSelectedItemsA}></SelectedItemsContainer>
+          onChangeSelectedItems={this.handleChangeSelectedItemsA}
+          totalBaseExperience={this.state.totalBaseExperienceA}
+        ></SelectedItemsContainer>
 
         <SelectedItemsContainer
           items={this.props.items}
           selectedItems={this.state.selectedItemsB}
-          onChangeSelectedItems={this.handleChangeSelectedItemsB}></SelectedItemsContainer>
+          onChangeSelectedItems={this.handleChangeSelectedItemsB}
+          totalBaseExperience={this.state.totalBaseExperienceB}
+
+        ></SelectedItemsContainer>
       </React.Fragment>
     );
   }
@@ -42,6 +66,6 @@ class TradingContainer extends React.Component {
 
 TradingContainer.propTypes = {
   title: PropTypes.string,
-  items: PropTypes.array
+  items: PropTypes.array,
 };
-export default TradingContainer
+export default TradingContainer;
