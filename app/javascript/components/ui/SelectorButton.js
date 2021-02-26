@@ -1,10 +1,22 @@
 import React from "react"
 
 class SelectorButton extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+
+  handleClick(e) {
+    console.log(this.props.selectedItem);
+    this.props.onAddItem(this.props.selectedItem)
+  }
+
   render () {
     return (
       <React.Fragment>
-        <button type="button">Add</button>
+        <button onClick={this.handleClick} type="button">Add</button>
       </React.Fragment>
     );
   }

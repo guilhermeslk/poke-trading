@@ -4,10 +4,20 @@ import SelectorContainer from "../containers/SelectorContainer"
 import SelectedItemsList from "../ui/SelectedItemsList"
 
 class SelectedItemsContainer extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.handleAddedItem = this.handleAddedItem.bind(this);
+  }
+
+  handleAddedItem(item) {
+    this.props.onChangeSelectedItems([ ...this.props.selectedItems, item]);
+  }
+
   render () {
     return (
       <React.Fragment>
-        <SelectorContainer items={this.props.items}></SelectorContainer>
+        <SelectorContainer items={this.props.items} onAddedItem={this.handleAddedItem}></SelectorContainer>
         <br />
         <SelectedItemsList selectedItems={this.props.selectedItems}></SelectedItemsList>
         <br />

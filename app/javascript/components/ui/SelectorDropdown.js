@@ -3,13 +3,31 @@ import PropTypes from "prop-types";
 import SelectorDropdownItem from "./SelectorDropdownItem";
 
 class SelectorDropdown extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(selectedOption) {
+    this.props.onSelectedItem(selectedOption.target.value);
+  }
+
+
   render() {
     const listItems = this.props.items.map((item, i) => (
       <React.Fragment key={i}>
         <SelectorDropdownItem name={item.name}></SelectorDropdownItem>
       </React.Fragment>
     ));
-    return <select name="pokemons">{listItems}</select>;
+
+    return (
+      <select
+        onChange={this.handleChange}
+        name="pokemons">
+          {listItems}
+      </select>
+    );
   }
 }
 
