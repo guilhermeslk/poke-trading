@@ -9,7 +9,6 @@ class SelectorButton extends React.Component {
 
 
   handleClick(e) {
-    console.log(this.props.selectedItem);
     this.props.onAddItem(this.props.selectedItem)
   }
 

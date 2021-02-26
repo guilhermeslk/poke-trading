@@ -13,7 +13,6 @@ class SelectorDropdown extends React.Component {
     this.props.onSelectedItem(selectedOption.target.value);
   }
 
-
   render() {
     const listItems = this.props.items.map((item, i) => (
       <React.Fragment key={i}>
@@ -24,7 +23,9 @@ class SelectorDropdown extends React.Component {
     return (
       <select
         onChange={this.handleChange}
+        value={this.props.selectedItem}
         name="pokemons">
+          <SelectorDropdownItem name=""></SelectorDropdownItem>
           {listItems}
       </select>
     );

@@ -22,6 +22,7 @@ class SelectorContainer extends React.Component {
 
   handleButtonClick(addedItem) {
     this.props.onAddedItem(addedItem);
+    this.setState({ selectedItem: ''});
   }
 
   render () {
@@ -29,7 +30,7 @@ class SelectorContainer extends React.Component {
       <React.Fragment>
         <SelectorDropdown
           items={this.props.items}
-          onSelectedItem={this.handleSelectorDropdownChange}></SelectorDropdown>
+          onSelectedItem={this.handleSelectorDropdownChange} selectedItem={this.state.selectedItem}></SelectorDropdown>
         <SelectorButton
           selectedItem={this.state.selectedItem}
           onAddItem={this.handleButtonClick}></SelectorButton>
