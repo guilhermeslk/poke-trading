@@ -2,6 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import SelectedItemsContainer from "../containers/SelectedItemsContainer";
+import TradeButton from "../ui/TradeButton";
+import TradeInfo from "../ui/TradeInfo";
+
 
 class TradingContainer extends React.Component {
   constructor(props) {
@@ -12,6 +15,7 @@ class TradingContainer extends React.Component {
       selectedItemsB: [],
       totalBaseExperienceA: 0,
       totalBaseExperienceB: 0,
+      isFairTrade: null,
     };
 
     this.handleChangeSelectedItemsA = this.handleChangeSelectedItemsA.bind(
@@ -20,6 +24,7 @@ class TradingContainer extends React.Component {
     this.handleChangeSelectedItemsB = this.handleChangeSelectedItemsB.bind(
       this
     );
+    this.handleTradeClick = this.handleTradeClick.bind(this);
   }
 
   handleChangeSelectedItemsA(selectedItems) {
@@ -40,6 +45,13 @@ class TradingContainer extends React.Component {
     return selectedItems.reduce((acc, curr) => acc + curr.base_experience, 0);
   }
 
+  handleTradeClick(event) {
+    this.setState({
+      isFairTrade:
+        this.state.totalBaseExperienceA == this.state.totalBaseExperienceB,
+    });
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -57,8 +69,15 @@ class TradingContainer extends React.Component {
           selectedItems={this.state.selectedItemsB}
           onChangeSelectedItems={this.handleChangeSelectedItemsB}
           totalBaseExperience={this.state.totalBaseExperienceB}
-
         ></SelectedItemsContainer>
+
+        <TradeButton onClick={this.handleTradeClick}></TradeButton>
+
+        <br />
+
+        {this.state.isFairTrade != null && (
+          <TradeInfo isFairTrade={this.state.isFairTrade} />
+        )}
       </React.Fragment>
     );
   }
