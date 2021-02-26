@@ -1,25 +1,30 @@
-import React from "react"
-import PropTypes from "prop-types"
-import SelectorContainer from "../containers/SelectorContainer"
-import SelectedItemsList from "../ui/SelectedItemsList"
+import React from "react";
+import PropTypes from "prop-types";
+import SelectorContainer from "../containers/SelectorContainer";
+import SelectedItemsList from "../ui/SelectedItemsList";
 
 class SelectedItemsContainer extends React.Component {
-
   constructor(props) {
     super(props);
     this.handleAddedItem = this.handleAddedItem.bind(this);
   }
 
   handleAddedItem(item) {
-    this.props.onChangeSelectedItems([ ...this.props.selectedItems, item]);
+    this.props.onChangeSelectedItems([...this.props.selectedItems, item]);
+
   }
 
-  render () {
+  render() {
     return (
       <React.Fragment>
-        <SelectorContainer items={this.props.items} onAddedItem={this.handleAddedItem}></SelectorContainer>
+        <SelectorContainer
+          items={this.props.items}
+          onAddedItem={this.handleAddedItem}
+        ></SelectorContainer>
         <br />
-        <SelectedItemsList selectedItems={this.props.selectedItems}></SelectedItemsList>
+        <SelectedItemsList
+          selectedItems={this.props.selectedItems}
+        ></SelectedItemsList>
         <br />
       </React.Fragment>
     );
@@ -29,6 +34,6 @@ class SelectedItemsContainer extends React.Component {
 SelectedItemsContainer.propTypes = {
   title: PropTypes.string,
   items: PropTypes.array,
-  selectedItems: PropTypes.array
+  selectedItems: PropTypes.array,
 };
-export default SelectedItemsContainer
+export default SelectedItemsContainer;

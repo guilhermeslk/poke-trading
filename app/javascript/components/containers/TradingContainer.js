@@ -10,7 +10,6 @@ class TradingContainer extends React.Component {
 
     this.handleChangeSelectedItemsA = this.handleChangeSelectedItemsA.bind(this);
     this.handleChangeSelectedItemsB = this.handleChangeSelectedItemsB.bind(this);
-
   }
 
   handleChangeSelectedItemsA(selectedItems) {

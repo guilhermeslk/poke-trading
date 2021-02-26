@@ -10,7 +10,7 @@ class SelectorDropdown extends React.Component {
   }
 
   handleChange(selectedOption) {
-    this.props.onSelectedItem(selectedOption.target.value);
+    this.props.onSelectedItem({name: selectedOption.target.value});
   }
 
   render() {
@@ -23,7 +23,7 @@ class SelectorDropdown extends React.Component {
     return (
       <select
         onChange={this.handleChange}
-        value={this.props.selectedItem}
+        value={this.props.selectedItem.name}
         name="pokemons">
           <SelectorDropdownItem name=""></SelectorDropdownItem>
           {listItems}

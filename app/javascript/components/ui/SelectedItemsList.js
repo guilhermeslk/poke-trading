@@ -4,7 +4,7 @@ class SelectedItemsList extends React.Component {
   render () {
     const listItems = this.props.selectedItems.map((item, i) =>
       <React.Fragment key={i}>
-        <li>{item}</li>
+        <li>{item.name}</li>
       </React.Fragment>
     );
 

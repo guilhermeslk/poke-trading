@@ -1,19 +1,18 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from "react";
+import PropTypes from "prop-types";
 
-import SelectorDropdown from "../ui/SelectorDropdown"
-import SelectorButton from "../ui/SelectorButton"
-
+import SelectorDropdown from "../ui/SelectorDropdown";
+import SelectorButton from "../ui/SelectorButton";
 
 class SelectorContainer extends React.Component {
-
   constructor(props) {
     super(props);
 
-    this.state = { selectedItem: ''};
-    this.handleSelectorDropdownChange = this.handleSelectorDropdownChange.bind(this);
+    this.state = { selectedItem: "", totalBaseExperience: 0 };
+    this.handleSelectorDropdownChange = this.handleSelectorDropdownChange.bind(
+      this
+    );
     this.handleButtonClick = this.handleButtonClick.bind(this);
-
   }
 
   handleSelectorDropdownChange(selectedItem) {
@@ -22,18 +21,46 @@ class SelectorContainer extends React.Component {
 
   handleButtonClick(addedItem) {
     this.props.onAddedItem(addedItem);
-    this.setState({ selectedItem: ''});
+    this.updateTotalBaseExperience(addedItem.name);
+    this.setState({ selectedItem: "" });
   }
 
-  render () {
+  updateTotalBaseExperience(name) {
+    fetch(`/pokemons/?name=${name}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("A network response error has occured");
+      })
+      .then((response) => {
+        this.setState({
+          totalBaseExperience:
+            this.state.totalBaseExperience + response.base_experience,
+        });
+        return {
+          name: response.name,
+          base_experience: response.base_experience,
+        };
+      })
+      .catch(() =>
+        console.log("An error occurred while fetching the Pokemon data")
+      );
+  }
+
+  render() {
     return (
       <React.Fragment>
         <SelectorDropdown
           items={this.props.items}
-          onSelectedItem={this.handleSelectorDropdownChange} selectedItem={this.state.selectedItem}></SelectorDropdown>
+          onSelectedItem={this.handleSelectorDropdownChange}
+          selectedItem={this.state.selectedItem}
+        ></SelectorDropdown>
         <SelectorButton
           selectedItem={this.state.selectedItem}
-          onAddItem={this.handleButtonClick}></SelectorButton>
+          onAddItem={this.handleButtonClick}
+        ></SelectorButton>
+        Total Base Experience: {this.state.totalBaseExperience}
       </React.Fragment>
     );
   }
@@ -43,4 +70,4 @@ SelectorContainer.propTypes = {
   items: PropTypes.array,
 };
 
-export default SelectorContainer
+export default SelectorContainer;
