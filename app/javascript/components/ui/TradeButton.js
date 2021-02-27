@@ -14,7 +14,7 @@ class TradeButton extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <button type="button" onClick={this.handleClickEvent}>
+        <button type="button" className="btn btn-primary" onClick={this.handleClickEvent}>
           Trade!
         </button>
       </React.Fragment>

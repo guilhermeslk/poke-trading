@@ -19,11 +19,14 @@ class SelectedItemsContainer extends React.Component {
         <SelectorContainer
           items={this.props.items}
           onAddedItem={this.handleAddedItem}
-          totalBaseExperience={this.props.totalBaseExperience}
         ></SelectorContainer>
         <br />
+
         <SelectedItemsList
           selectedItems={this.props.selectedItems}
+          totalBaseExperience={this.props.totalBaseExperience}
+          tableColor={this.props.tableColor}
+
         ></SelectedItemsList>
         <br />
       </React.Fragment>

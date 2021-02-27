@@ -3,14 +3,13 @@ import PropTypes from "prop-types";
 import SelectorDropdownItem from "./SelectorDropdownItem";
 
 class SelectorDropdown extends React.Component {
-
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(selectedOption) {
-    this.props.onSelectedItem({name: selectedOption.target.value});
+    this.props.onSelectedItem({ name: selectedOption.target.value });
   }
 
   render() {
@@ -21,13 +20,16 @@ class SelectorDropdown extends React.Component {
     ));
 
     return (
-      <select
-        onChange={this.handleChange}
-        value={this.props.selectedItem.name}
-        name="pokemons">
-          <SelectorDropdownItem name=""></SelectorDropdownItem>
+      <React.Fragment>
+        <select
+          className="form-select"
+          onChange={this.handleChange}
+          value={this.props.selectedItem.name}
+        >
+          <SelectorDropdownItem name={this.props.defaultName}></SelectorDropdownItem>
           {listItems}
-      </select>
+        </select>
+      </React.Fragment>
     );
   }
 }

@@ -5,7 +5,6 @@ import SelectedItemsContainer from "../containers/SelectedItemsContainer";
 import TradeButton from "../ui/TradeButton";
 import TradeInfo from "../ui/TradeInfo";
 
-
 class TradingContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -55,25 +54,35 @@ class TradingContainer extends React.Component {
   render() {
     return (
       <React.Fragment>
-        {this.props.title}
+        <div className="row">
+          <h2 className="main-title">{this.props.title}</h2>
+        </div>
 
-        <SelectedItemsContainer
-          items={this.props.items}
-          selectedItems={this.state.selectedItemsA}
-          onChangeSelectedItems={this.handleChangeSelectedItemsA}
-          totalBaseExperience={this.state.totalBaseExperienceA}
-        ></SelectedItemsContainer>
+        <div className="row">
+          <div className="col-6">
+            <SelectedItemsContainer
+              items={this.props.items}
+              selectedItems={this.state.selectedItemsA}
+              onChangeSelectedItems={this.handleChangeSelectedItemsA}
+              totalBaseExperience={this.state.totalBaseExperienceA}
+              tableColor="table-danger"
+            ></SelectedItemsContainer>
+          </div>
 
-        <SelectedItemsContainer
-          items={this.props.items}
-          selectedItems={this.state.selectedItemsB}
-          onChangeSelectedItems={this.handleChangeSelectedItemsB}
-          totalBaseExperience={this.state.totalBaseExperienceB}
-        ></SelectedItemsContainer>
+          <div className="col-6">
+            <SelectedItemsContainer
+              items={this.props.items}
+              selectedItems={this.state.selectedItemsB}
+              onChangeSelectedItems={this.handleChangeSelectedItemsB}
+              totalBaseExperience={this.state.totalBaseExperienceB}
+              tableColor="table-success"
+            ></SelectedItemsContainer>
+          </div>
+        </div>
 
-        <TradeButton onClick={this.handleTradeClick}></TradeButton>
-
-        <br />
+        <div className="row justify-content-center">
+          <TradeButton onClick={this.handleTradeClick}></TradeButton>
+        </div>
 
         {this.state.isFairTrade != null && (
           <TradeInfo isFairTrade={this.state.isFairTrade} />

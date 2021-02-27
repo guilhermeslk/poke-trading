@@ -43,16 +43,21 @@ class SelectorContainer extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <SelectorDropdown
-          items={this.props.items}
-          onSelectedItem={this.handleSelectorDropdownChange}
-          selectedItem={this.state.selectedItem}
-        ></SelectorDropdown>
-        <SelectorButton
-          selectedItem={this.state.selectedItem}
-          onAddItem={this.handleButtonClick}
-        ></SelectorButton>
-        Total Base Experience: {this.props.totalBaseExperience}
+        <div className="container">
+          <div className="row">
+            <SelectorDropdown
+              defaultName="Choose pokémon..."
+              items={this.props.items}
+              onSelectedItem={this.handleSelectorDropdownChange}
+              selectedItem={this.state.selectedItem}
+            ></SelectorDropdown>
+
+            <SelectorButton
+              selectedItem={this.state.selectedItem}
+              onAddItem={this.handleButtonClick}
+            ></SelectorButton>
+          </div>
+        </div>
       </React.Fragment>
     );
   }
