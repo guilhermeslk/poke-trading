@@ -1,0 +1,2 @@
+module TradeEntriesHelper
+end

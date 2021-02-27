@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  total_experience_from: 1
+  total_experience_to: 1
+  pokemons_from: MyString
+  pokemons_to: MyString
+
+two:
+  total_experience_from: 1
+  total_experience_to: 1
+  pokemons_from: MyString
+  pokemons_to: MyString
