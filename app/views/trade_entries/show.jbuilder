@@ -1,0 +1,5 @@
+json.pokemons_from @trade_entry.pokemons_from
+json.total_experience_from @trade_entry.total_experience_from
+json.pokemons_to @trade_entry.pokemons_to
+json.total_experience_to @trade_entry.total_experience_to
+json.updated_at @trade_entry.updated_at
