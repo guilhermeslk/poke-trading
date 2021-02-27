@@ -1,0 +1,54 @@
+import React from "react";
+import PropTypes from "prop-types";
+
+class TradeEntryItem extends React.Component {
+  render() {
+    console.log(this.props.tradeEntryItem);
+
+    const pokemonFromList =
+      this.props.tradeEntryItem.pokemons_from.map((pokemon, i) => (
+        <span key={i} class="badge bg-danger">
+          {pokemon}
+        </span>
+      ));
+
+    const pokemonToList =
+      this.props.tradeEntryItem.pokemons_to.map((pokemon, i) => (
+        <span key={i} class="badge bg-success">
+          {pokemon}
+        </span>
+      ));
+
+    return (
+      <React.Fragment>
+        <table className="table">
+          <thead>
+            <tr>
+              <th>From</th>
+              <th>Total Base XP</th>
+
+              <th>To</th>
+              <th>Total Base XP</th>
+
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{pokemonFromList}</td>
+              <td>{this.props.tradeEntryItem.total_experience_from}</td>
+              <td>{pokemonToList}</td>
+              <td>{this.props.tradeEntryItem.total_experience_to}</td>
+              <td>{this.props.tradeEntryItem.updated_at}</td>
+            </tr>
+          </tbody>
+        </table>
+      </React.Fragment>
+    );
+  }
+}
+
+TradeEntryItem.propTypes = {
+  tradeEntry: PropTypes.object,
+};
+export default TradeEntryItem;
