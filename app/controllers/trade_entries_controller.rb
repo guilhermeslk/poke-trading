@@ -17,6 +17,7 @@ class TradeEntriesController < ApplicationController
   # POST /trade_entries or /trade_entries.json
   def create
     @trade_entry = TradeEntry.new(trade_entry_params)
+    puts trade_entry_params
     @trade_entry.save
 
     respond_with @trade_entry, status: :created
@@ -24,6 +25,6 @@ class TradeEntriesController < ApplicationController
 
   private
     def trade_entry_params
-      params.require(:trade_entry).permit(:total_experience_from, :total_experience_to, :pokemons_from, :pokemons_to)
+      params.require(:trade_entry).permit(:total_experience_from, :total_experience_to, :pokemons_from => [], :pokemons_to => [])
     end
 end
