@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import SelectedItemsContainer from "../containers/SelectedItemsContainer";
 import TradeButton from "../ui/TradeButton";
 import TradeInfo from "../ui/TradeInfo";
+import axios from "axios";
 
 class TradingContainer extends React.Component {
   constructor(props) {
@@ -49,6 +50,30 @@ class TradingContainer extends React.Component {
       isFairTrade:
         this.state.totalBaseExperienceA == this.state.totalBaseExperienceB,
     });
+
+    this.persistTrade();
+  }
+
+  persistTrade() {
+    const tradeEntry = {
+      total_experience_from: this.state.totalBaseExperienceA,
+      total_experience_to: this.state.totalBaseExperienceB,
+      pokemons_from: this.state.selectedItemsA.map((pokemon) => pokemon.name),
+      pokemons_to: this.state.selectedItemsB.map((pokemon) => pokemon.name),
+    };
+
+    axios
+      .post("/trade_entries", tradeEntry, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   render() {

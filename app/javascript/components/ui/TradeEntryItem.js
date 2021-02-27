@@ -3,18 +3,16 @@ import PropTypes from "prop-types";
 
 class TradeEntryItem extends React.Component {
   render() {
-    console.log(this.props.tradeEntryItem);
-
     const pokemonFromList =
       this.props.tradeEntryItem.pokemons_from.map((pokemon, i) => (
-        <span key={i} class="badge bg-danger">
+        <span key={i} className="badge bg-danger">
           {pokemon}
         </span>
       ));
 
     const pokemonToList =
       this.props.tradeEntryItem.pokemons_to.map((pokemon, i) => (
-        <span key={i} class="badge bg-success">
+        <span key={i} className="badge bg-success">
           {pokemon}
         </span>
       ));
