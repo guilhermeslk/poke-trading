@@ -4,11 +4,13 @@ import PropTypes from "prop-types";
 import SelectorDropdown from "../ui/SelectorDropdown";
 import SelectorButton from "../ui/SelectorButton";
 
+import axios from "axios";
+
 class SelectorContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { selectedItem: "", totalBaseExperience: 0 };
+    this.state = { selectedItem: "", totalBaseExperience: 0, fetching: false };
     this.handleSelectorDropdownChange = this.handleSelectorDropdownChange.bind(
       this
     );
@@ -20,24 +22,22 @@ class SelectorContainer extends React.Component {
   }
 
   handleButtonClick(addedItem) {
+    this.setState({ ...this.state, fetching: true });
+
     this.updateTotalBaseExperience(addedItem.name);
     this.setState({ selectedItem: "" });
   }
 
   updateTotalBaseExperience(name) {
-    fetch(`/pokemons/?name=${name}`)
+    axios
+      .get(`/pokemons/?name=${name}`)
       .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("A network response error has occured");
-      })
-      .then((addedItem) => {
+        this.setState({ ...this.state, fetching: false });
+
+        const addedItem = response.data;
         this.props.onAddedItem(addedItem);
       })
-      .catch(() =>
-        console.log("An error occurred while fetching the Pokemon data")
-      );
+      .catch((error) => console.log(error));
   }
 
   render() {
@@ -55,6 +55,7 @@ class SelectorContainer extends React.Component {
             <SelectorButton
               selectedItem={this.state.selectedItem}
               onAddItem={this.handleButtonClick}
+              isLoading={this.state.fetching}
             ></SelectorButton>
           </div>
         </div>
