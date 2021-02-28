@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import * as moment from 'moment'
+
 class TradeEntryItem extends React.Component {
   render() {
     const pokemonFromList = this.props.tradeEntryItem.pokemons_from.map(
@@ -26,7 +28,7 @@ class TradeEntryItem extends React.Component {
           <td>{this.props.tradeEntryItem.total_experience_from}</td>
           <td>{pokemonToList}</td>
           <td>{this.props.tradeEntryItem.total_experience_to}</td>
-          <td>{this.props.tradeEntryItem.updated_at}</td>
+          <td>{moment(this.props.tradeEntryItem.updated_at).fromNow()}</td>
         </tr>
       </React.Fragment>
     );

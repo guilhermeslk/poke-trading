@@ -6,9 +6,13 @@ class TradeInfo extends React.Component {
     return (
       <React.Fragment>
         {this.props.isFairTrade ? (
-          <span className="green">The trade is fair!</span>
+          <div className="alert alert-success" role="alert">
+            The trade is fair!
+          </div>
         ) : (
-          <span className="red">The trade is not fair!</span>
+          <div className="alert alert-danger" role="alert">
+            The trade is not fair!
+          </div>
         )}
       </React.Fragment>
     );

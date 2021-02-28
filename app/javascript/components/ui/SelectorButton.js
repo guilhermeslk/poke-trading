@@ -14,11 +14,16 @@ class SelectorButton extends React.Component {
     return (
       <React.Fragment>
         <button
-          style={{marginLeft: '10px'}}
+          style={{ marginLeft: "10px" }}
           className="btn btn-outline-primary bt"
           onClick={this.handleClick}
           type="button"
         >
+          {this.props.isLoading ? (
+             <span className="spinner-border spinner-border-sm" role="status"></span>
+          ) : (
+            null
+          )}
           Add
         </button>
       </React.Fragment>

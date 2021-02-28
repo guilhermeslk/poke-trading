@@ -28,6 +28,7 @@ class TradingCalculatorContainer extends React.Component {
       this
     );
     this.handleTradeClick = this.handleTradeClick.bind(this);
+    this.handleResetClick = this.handleResetClick.bind(this);
   }
 
   componentDidMount() {
@@ -53,12 +54,25 @@ class TradingCalculatorContainer extends React.Component {
   }
 
   handleTradeClick(event) {
+    const xpDiff = Math.abs(
+      this.state.totalBaseExperienceA - this.state.totalBaseExperienceB
+    );
+
     this.setState({
-      isFairTrade:
-        this.state.totalBaseExperienceA == this.state.totalBaseExperienceB,
+      isFairTrade: xpDiff < 10,
     });
 
     this.persistTrade();
+  }
+
+  handleResetClick(event) {
+    this.setState({
+      selectedItemsA: [],
+      selectedItemsB: [],
+      totalBaseExperienceA: 0,
+      totalBaseExperienceB: 0,
+      isFairTrade: null,
+    });
   }
 
   persistTrade() {
@@ -107,10 +121,7 @@ class TradingCalculatorContainer extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="row">
-          <h2 className="main-title">Pokemon Trading Calculator</h2>
-        </div>
-        <div className="container">
+        <div className="main container">
           <TradingContainer
             items={this.props.pokemons}
             onChangeSelectedItemsA={this.handleChangeSelectedItemsA}
@@ -121,12 +132,12 @@ class TradingCalculatorContainer extends React.Component {
             totalBaseExperienceB={this.state.totalBaseExperienceB}
             isFairTrade={this.state.isFairTrade}
             onTradeClick={this.handleTradeClick}
+            onResetClick={this.handleResetClick}
           ></TradingContainer>
         </div>
 
         <div className="container">
           <TradeEntriesContainer
-            title="Latest Entries"
             tradeEntries={this.state.tradeEntries}
           ></TradeEntriesContainer>
         </div>

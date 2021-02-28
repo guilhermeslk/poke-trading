@@ -2,7 +2,7 @@ class PokeApiService
   include HTTParty
   base_uri "pokeapi.co"
 
-  def initialize(limit:, offset: 0)
+  def initialize(limit: 20, offset: 0)
     @options = { limit: limit, offset: offset }
   end
 

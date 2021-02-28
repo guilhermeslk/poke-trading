@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import SelectedItemsContainer from "../containers/SelectedItemsContainer";
 import TradeButton from "../ui/TradeButton";
 import TradeInfo from "../ui/TradeInfo";
+import ResetButton from "../ui/ResetButton";
 
 class TradingContainer extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -18,6 +18,8 @@ class TradingContainer extends React.Component {
     );
 
     this.handleTradeClick = this.handleTradeClick.bind(this);
+    this.handleResetClick = this.handleResetClick.bind(this);
+
   }
 
   handleChangeSelectedItemsA(selectedItems) {
@@ -30,6 +32,10 @@ class TradingContainer extends React.Component {
 
   handleTradeClick(event) {
     this.props.onTradeClick(event);
+  }
+
+  handleResetClick(event) {
+    this.props.onResetClick(event);
   }
 
   render() {
@@ -57,13 +63,23 @@ class TradingContainer extends React.Component {
           </div>
         </div>
 
-        <div className="row justify-content-center">
-          <TradeButton onClick={this.handleTradeClick}></TradeButton>
-        </div>
-
         {this.props.isFairTrade != null && (
           <TradeInfo isFairTrade={this.props.isFairTrade} />
         )}
+
+        <div className="row justify-content-center mt-1">
+          <ResetButton
+            selectedItemsA={this.props.selectedItemsA}
+            selectedItemsB={this.props.selectedItemsB}
+            onClick={this.handleResetClick}
+          ></ResetButton
+          >
+          <TradeButton
+            selectedItemsA={this.props.selectedItemsA}
+            selectedItemsB={this.props.selectedItemsB}
+            onClick={this.handleTradeClick}
+          ></TradeButton>
+        </div>
       </React.Fragment>
     );
   }
