@@ -17,7 +17,6 @@ class TradeEntriesController < ApplicationController
   # POST /trade_entries or /trade_entries.json
   def create
     @trade_entry = TradeEntry.new(trade_entry_params)
-    puts trade_entry_params
     @trade_entry.save
 
     respond_with @trade_entry, status: :created
