@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import TradeEntryItem from "../ui/TradeEntryItem";
 
-import axios from "axios";
-
 class TradeEntriesContainer extends React.Component {
   render() {
     const tradeEntries = this.props.tradeEntries.map((tradeEntry, i) => (
