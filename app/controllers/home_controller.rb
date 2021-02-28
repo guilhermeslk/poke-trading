@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
     def index
-        @pokemons = PokeApiService.new().list
-        @trade_entries = TradeEntry.all
+      @pokemons = PokeApiService.new().list
     end
 end
