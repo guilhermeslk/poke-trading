@@ -2,8 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import TradeEntryItem from "../ui/TradeEntryItem";
 
+import axios from "axios";
+
 class TradeEntriesContainer extends React.Component {
   render() {
+    const tradeEntries = this.props.tradeEntries.map((tradeEntry, i) => (
+      <TradeEntryItem key={i} tradeEntryItem={tradeEntry}></TradeEntryItem>
+    ));
+
     return (
       <React.Fragment>
         <div className="row">
@@ -20,14 +26,7 @@ class TradeEntriesContainer extends React.Component {
                 <th>Date</th>
               </tr>
             </thead>
-            <tbody>
-              {this.props.tradeEntries.map((tradeEntry, i) => (
-                <TradeEntryItem
-                  key={i}
-                  tradeEntryItem={tradeEntry}
-                ></TradeEntryItem>
-              ))}
-            </tbody>
+            <tbody>{tradeEntries}</tbody>
           </table>
         </div>
       </React.Fragment>
