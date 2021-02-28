@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
-    def index
-        @pokemons = PokeApiService.new().list
-        @trade_entries = TradeEntry.all
-    end
+  def index
+    @pokemons = PokeApiService.new(limit: 10000).list
+  end
 end

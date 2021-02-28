@@ -3,9 +3,8 @@ class TradeEntriesController < ApplicationController
   before_action :verify_requested_format!
   skip_before_action :verify_authenticity_token
 
-  # GET /trade_entries or /trade_entries.json
   def index
-    @trade_entries = TradeEntry.all
+    @trade_entries = TradeEntry.ordered_by_created_at
     respond_with @trade_entries
   end
 
@@ -14,7 +13,6 @@ class TradeEntriesController < ApplicationController
     respond_with @trade_entry
   end
 
-  # POST /trade_entries or /trade_entries.json
   def create
     @trade_entry = TradeEntry.new(trade_entry_params)
     @trade_entry.save
