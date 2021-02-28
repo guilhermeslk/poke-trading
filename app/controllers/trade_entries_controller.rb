@@ -5,7 +5,7 @@ class TradeEntriesController < ApplicationController
 
   # GET /trade_entries or /trade_entries.json
   def index
-    @trade_entries = TradeEntry.all
+    @trade_entries = TradeEntry.ordered_by_created_at
     respond_with @trade_entries
   end
 
