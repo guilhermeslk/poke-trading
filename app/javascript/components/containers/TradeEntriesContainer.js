@@ -10,8 +10,7 @@ class TradeEntriesContainer extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="row">
-          <h3 className="text-center">{this.props.title}</h3>
+        <div className="row mt-3">
           <table className="table">
             <thead>
               <tr>
@@ -21,7 +20,7 @@ class TradeEntriesContainer extends React.Component {
                 <th>To</th>
                 <th>Total Base XP</th>
 
-                <th>Date</th>
+                <th>Last Updated</th>
               </tr>
             </thead>
             <tbody>{tradeEntries}</tbody>

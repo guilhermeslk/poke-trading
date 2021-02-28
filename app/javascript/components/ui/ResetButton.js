@@ -1,6 +1,6 @@
-import React from "react";
+import React from "react"
 
-class TradeButton extends React.Component {
+class ResetButton extends React.Component {
   constructor(props) {
     super(props);
 
@@ -11,23 +11,23 @@ class TradeButton extends React.Component {
     this.props.onClick(event);
   }
 
-  render() {
+  render () {
     return (
       <React.Fragment>
-        <button
+          <button
           disabled={
             !this.props.selectedItemsA.length ||
             !this.props.selectedItemsB.length
           }
           type="button"
-          className="btn btn-primary"
+          className="btn btn-default"
           onClick={this.handleClickEvent}
         >
-          Trade!
+          Reset
         </button>
       </React.Fragment>
     );
   }
 }
 
-export default TradeButton;
+export default ResetButton
