@@ -6,6 +6,8 @@ import TradeEntriesContainer from "../containers/TradeEntriesContainer";
 
 import axios from "axios";
 
+const TRADE_ENTRIES_URL = "/trade_entries";
+
 class TradingCalculatorContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -60,22 +62,8 @@ class TradingCalculatorContainer extends React.Component {
   }
 
   persistTrade() {
-    const {
-      totalBaseExperienceA,
-      totalBaseExperienceB,
-      selectedItemsA,
-      selectedItemsB,
-    } = this.state;
-
-    const tradeEntry = {
-      total_experience_from: totalBaseExperienceA,
-      total_experience_to: totalBaseExperienceB,
-      pokemons_from: selectedItemsA.map((pokemon) => pokemon.name),
-      pokemons_to: selectedItemsB.map((pokemon) => pokemon.name),
-    };
-
     axios
-      .post("/trade_entries", tradeEntry, {
+      .post(TRADE_ENTRIES_URL, this.tradeObjectToJSON(), {
         headers: {
           "Content-Type": "application/json",
         },
@@ -90,7 +78,7 @@ class TradingCalculatorContainer extends React.Component {
 
   loadTradeEntries() {
     axios
-      .get("/trade_entries")
+      .get(TRADE_ENTRIES_URL)
       .then((response) => {
         const tradeEntries = response.data.trade_entries;
         this.setState({ tradeEntries });
@@ -98,6 +86,22 @@ class TradingCalculatorContainer extends React.Component {
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  tradeObjectToJSON() {
+    const {
+      totalBaseExperienceA,
+      totalBaseExperienceB,
+      selectedItemsA,
+      selectedItemsB,
+    } = this.state;
+
+    return {
+      total_experience_from: totalBaseExperienceA,
+      total_experience_to: totalBaseExperienceB,
+      pokemons_from: selectedItemsA.map((pokemon) => pokemon.name),
+      pokemons_to: selectedItemsB.map((pokemon) => pokemon.name),
+    };
   }
 
   render() {
