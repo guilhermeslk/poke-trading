@@ -10,6 +10,11 @@ class SelectedItemsContainer extends React.Component {
   }
 
   handleAddedItem(item) {
+    if (this.props.selectedItems.length == 6) {
+      alert("You've reached the max of 6 pokemons!");
+      return;
+    }
+
     this.props.onChangeSelectedItems([...this.props.selectedItems, item]);
   }
 
