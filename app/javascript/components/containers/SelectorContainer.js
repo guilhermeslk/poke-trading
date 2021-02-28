@@ -25,7 +25,6 @@ class SelectorContainer extends React.Component {
     this.setState({ ...this.state, fetching: true });
 
     this.updateTotalBaseExperience(addedItem.name);
-    this.setState({ selectedItem: "" });
   }
 
   updateTotalBaseExperience(name) {
