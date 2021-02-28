@@ -54,9 +54,12 @@ class TradingCalculatorContainer extends React.Component {
   }
 
   handleTradeClick(event) {
+    const xpDiff = Math.abs(
+      this.state.totalBaseExperienceA - this.state.totalBaseExperienceB
+    );
+
     this.setState({
-      isFairTrade:
-        this.state.totalBaseExperienceA == this.state.totalBaseExperienceB,
+      isFairTrade: xpDiff < 10,
     });
 
     this.persistTrade();
