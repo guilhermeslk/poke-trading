@@ -42,22 +42,20 @@ class SelectorContainer extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="container">
-          <div className="row">
+          <form className="form-inline">
             <SelectorDropdown
               defaultName="Choose pokémon..."
               items={this.props.items}
               onSelectedItem={this.handleSelectorDropdownChange}
               selectedItem={this.state.selectedItem}
             ></SelectorDropdown>
-
+        
             <SelectorButton
               selectedItem={this.state.selectedItem}
               onAddItem={this.handleButtonClick}
               isLoading={this.state.fetching}
             ></SelectorButton>
-          </div>
-        </div>
+          </form>
       </React.Fragment>
     );
   }

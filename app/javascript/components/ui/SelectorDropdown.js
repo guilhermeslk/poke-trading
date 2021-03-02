@@ -21,14 +21,18 @@ class SelectorDropdown extends React.Component {
 
     return (
       <React.Fragment>
-        <select
-          className="form-select"
-          onChange={this.handleChange}
-          value={this.props.selectedItem.name}
-        >
-          <SelectorDropdownItem name={this.props.defaultName}></SelectorDropdownItem>
-          {listItems}
-        </select>
+        <div className="form-group mr-sm-2">
+          <select
+            className="form-control"
+            onChange={this.handleChange}
+            value={this.props.selectedItem.name}
+          >
+            <SelectorDropdownItem
+              name={this.props.defaultName}
+            ></SelectorDropdownItem>
+            {listItems}
+          </select>
+        </div>
       </React.Fragment>
     );
   }

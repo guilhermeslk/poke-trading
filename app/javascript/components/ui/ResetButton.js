@@ -15,10 +15,6 @@ class ResetButton extends React.Component {
     return (
       <React.Fragment>
           <button
-          disabled={
-            !this.props.selectedItemsA.length ||
-            !this.props.selectedItemsB.length
-          }
           type="button"
           className="btn btn-default"
           onClick={this.handleClickEvent}

@@ -19,7 +19,6 @@ class TradingContainer extends React.Component {
 
     this.handleTradeClick = this.handleTradeClick.bind(this);
     this.handleResetClick = this.handleResetClick.bind(this);
-
   }
 
   handleChangeSelectedItemsA(selectedItems) {
@@ -63,17 +62,13 @@ class TradingContainer extends React.Component {
           </div>
         </div>
 
-        {this.props.isFairTrade != null && (
+        {(this.props.selectedItemsA.length > 0 ||
+          this.props.selectedItemsB.length > 0) && (
           <TradeInfo isFairTrade={this.props.isFairTrade} />
         )}
 
         <div className="row justify-content-center mt-1">
-          <ResetButton
-            selectedItemsA={this.props.selectedItemsA}
-            selectedItemsB={this.props.selectedItemsB}
-            onClick={this.handleResetClick}
-          ></ResetButton
-          >
+          <ResetButton onClick={this.handleResetClick}></ResetButton>
           <TradeButton
             selectedItemsA={this.props.selectedItemsA}
             selectedItemsB={this.props.selectedItemsB}
