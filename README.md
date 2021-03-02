@@ -1,6 +1,7 @@
 # poke-trading
 
-## Screenshot
+Screenshot:
+
 ![Screenshot](https://github.com/guilhermeslk/poke-trading/blob/main/app/assets/images/screenshot.png)
 
 
