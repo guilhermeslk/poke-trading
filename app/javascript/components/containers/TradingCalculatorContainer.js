@@ -128,6 +128,7 @@ class TradingCalculatorContainer extends React.Component {
     return (
       <React.Fragment>
         <div className="main container">
+          <h1 className="mb-3">{this.props.title}</h1>
           <TradingContainer
             items={this.props.pokemons}
             onChangeSelectedItemsA={this.handleChangeSelectedItemsA}
@@ -154,5 +155,6 @@ class TradingCalculatorContainer extends React.Component {
 
 TradingCalculatorContainer.propTypes = {
   pokemons: PropTypes.array,
+  title: PropTypes.string
 };
 export default TradingCalculatorContainer;
