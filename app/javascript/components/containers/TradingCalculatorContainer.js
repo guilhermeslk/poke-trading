@@ -40,6 +40,8 @@ class TradingCalculatorContainer extends React.Component {
       selectedItemsA: selectedItems,
       totalBaseExperienceA: this.calculateTotalExperience(selectedItems),
     });
+
+    this.verifyFairTrade();
   }
 
   handleChangeSelectedItemsB(selectedItems) {
@@ -47,13 +49,15 @@ class TradingCalculatorContainer extends React.Component {
       selectedItemsB: selectedItems,
       totalBaseExperienceB: this.calculateTotalExperience(selectedItems),
     });
+
+    this.verifyFairTrade();
   }
 
   calculateTotalExperience(selectedItems) {
     return selectedItems.reduce((acc, curr) => acc + curr.base_experience, 0);
   }
 
-  handleTradeClick(event) {
+  verifyFairTrade() {
     const xpDiff = Math.abs(
       this.state.totalBaseExperienceA - this.state.totalBaseExperienceB
     );
@@ -61,7 +65,9 @@ class TradingCalculatorContainer extends React.Component {
     this.setState({
       isFairTrade: xpDiff < 10,
     });
+  }
 
+  handleTradeClick(event) {
     this.persistTrade();
   }
 
