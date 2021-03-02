@@ -1,24 +1,6 @@
-# README
+# poke-trading
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![Screenshot](https://github.com/github/guilhermeslnk/poke-trading/app/assets/images/screenshot.png)
 
-Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[Production Environment](https://sheltered-atoll-55392.herokuapp.com)
