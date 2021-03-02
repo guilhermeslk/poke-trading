@@ -42,7 +42,7 @@ class SelectorContainer extends React.Component {
   render() {
     return (
       <React.Fragment>
-          <form class="form-inline">
+          <form className="form-inline">
             <SelectorDropdown
               defaultName="Choose pokémon..."
               items={this.props.items}

@@ -1,24 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import * as moment from 'moment'
+import * as moment from "moment";
 
 class TradeEntryItem extends React.Component {
   render() {
-    const pokemonFromList = this.props.tradeEntryItem.pokemons_from.map(
-      (pokemon, i) => (
-        <span key={i} className="badge bg-danger">
-          {pokemon}
-        </span>
-      )
+    const pokemonFromList = (
+      <ul>
+        {this.props.tradeEntryItem.pokemons_from.map((pokemon, i) => (
+          <li key={i}>
+            <span className="badge badge-secondary bg-danger">{pokemon}</span>
+          </li>
+        ))}
+      </ul>
     );
 
-    const pokemonToList = this.props.tradeEntryItem.pokemons_to.map(
-      (pokemon, i) => (
-        <span key={i} className="badge bg-success">
-          {pokemon}
-        </span>
-      )
+    const pokemonToList = (
+      <ul>
+        {this.props.tradeEntryItem.pokemons_to.map((pokemon, i) => (
+          <li key={i}>
+            <span className="badge badge-secondary bg-success">{pokemon}</span>
+          </li>
+        ))}
+      </ul>
     );
 
     return (

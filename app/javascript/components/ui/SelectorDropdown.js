@@ -21,7 +21,7 @@ class SelectorDropdown extends React.Component {
 
     return (
       <React.Fragment>
-        <div class="form-group mr-sm-2">
+        <div className="form-group mr-sm-2">
           <select
             className="form-control"
             onChange={this.handleChange}
