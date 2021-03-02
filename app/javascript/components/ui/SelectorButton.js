@@ -8,16 +8,16 @@ class SelectorButton extends React.Component {
 
   handleClick(e) {
     this.props.onAddItem(this.props.selectedItem);
+    e.preventDefault();
   }
 
   render() {
     return (
       <React.Fragment>
         <button
-          style={{ marginLeft: "10px" }}
-          className="btn btn-outline-primary bt"
+          className="btn btn-outline-primary"
           onClick={this.handleClick}
-          type="button"
+          type="submit"
         >
           {this.props.isLoading ? (
              <span className="spinner-border spinner-border-sm" role="status"></span>
